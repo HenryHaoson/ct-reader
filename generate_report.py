@@ -323,5 +323,5 @@ if __name__ == '__main__':
     with open(sys.argv[1], 'r', encoding='utf-8') as f:
         data = json.load(f)
 
-    out = generate_report(data, sys.argv[2])
+    out = generate_html(data, sys.argv[2])
     print(f"Report generated: {out}")
