@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
 Generate an HTML CT report with embedded images.
-Usage: python3 generate_report.py --output report.html --data report.json
-       OR called from SKILL.md workflow with structured data
+Usage: python3 generate_report.py <data.json> <output.html>
 """
 
 import json
@@ -308,6 +307,8 @@ def generate_html(data, output_path):
 </div>
 </body>
 </html>'''
+
+    os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
 
     with open(output_path, 'w', encoding='utf-8') as f:
         f.write(html)
