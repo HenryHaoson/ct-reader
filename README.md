@@ -12,12 +12,18 @@
 
 ## 报告示例
 
-![报告预览](docs/report_preview_header.png)
+**报告头部** — 患者信息（脱敏）+ 原始报告：
+
+![报告头部](docs/report_preview_header.png)
+
+**AI 影像分析** — 诊断发现与 CT 截图一一对应（肺窗 + 纵隔窗对照）：
+
+![AI 分析](docs/report_preview_findings.png)
 
 报告包含以下部分：
 - **患者信息**：姓名（脱敏）、性别、年龄、检查日期、检查部位等
 - **原始报告**：医院放射科出具的影像所见和诊断意见
-- **AI 影像分析**：按解剖区域（颈部及气道、肺尖及上肺野、隆突及中肺野、心脏及下肺野、重建序列）逐区分析，每个区域配对应 CT 截图
+- **AI 影像分析**：按解剖区域逐区分析，每个区域配对应 CT 截图
 - **印象与建议**：综合分析结论和后续建议
 
 ## 前置条件
@@ -54,11 +60,12 @@ Claude Code 会自动：
 
 ```
 output/
-├── screenshots/          # CT 截图
+├── screenshots/          # CT 截图（~40 张）
 │   ├── 00_report_page.png
-│   ├── 01_lung_im30_neck.png
-│   ├── ...
-│   └── 10_coronal_im40.png
+│   ├── 01_lung_im05.png ~ 20_lung_im76.png    # 肺窗 20 张
+│   ├── 21_std_im25.png ~ 29_std_im72.png       # 纵隔窗 9 张
+│   ├── 30_coronal_im20.png ~ 32_coronal_im60.png  # 冠状位 3 张
+│   └── 33_processed_im1.png ~ 38_processed2_im4.png  # 气道重建 6 张
 ├── report_data.json      # 结构化报告数据
 └── ct_report.html        # HTML 报告（可直接浏览器打开）
 ```
@@ -71,7 +78,8 @@ ct-reader/
 ├── generate_report.py    # HTML 报告生成器
 ├── decode_qr.sh          # 二维码解码脚本
 ├── docs/                 # 文档资源
-│   └── report_preview_header.png
+│   ├── report_preview_header.png
+│   └── report_preview_findings.png
 ├── .gitignore
 └── README.md
 ```
